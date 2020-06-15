@@ -13,7 +13,7 @@ def main():
     args = parser.parse_args()
     url = args.url
 
-    # Download the video by calling function
+    # Download the video in audio format by calling the function get_vid, audio stored as title temporarily
     download_path = (os.getenv('HOME') + '/Music')
     title = get_vid(url, download_path)
 
@@ -24,11 +24,12 @@ def main():
     name = input("What do you wish to name this audio download?")
     try:
         shutil.move(full_title, name)
+        print(f"Audio saved {download_path}/{name}")
     except Exception as e:
         print(e)
 
 
-# Function that download the audio of the given video url and returns the videos title
+# Function that downloads the audio of the given video url and returns the videos title
 def get_vid(url, download_path):
     vid = YouTube(url)
     title = vid.title
